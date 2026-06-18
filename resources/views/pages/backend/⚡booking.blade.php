@@ -26,14 +26,13 @@ new class extends Component
         return Booking::paginate(6);
     }
 
-    public function delete($id){
+    public function delete(Booking $booking){
 
 
-        Booking::findOrFail($id);
+        $booking->delete();
+        $this->warning('Entry Deleted!');
 
-
-
-
+        return redirect()->back();
 
     }
 
