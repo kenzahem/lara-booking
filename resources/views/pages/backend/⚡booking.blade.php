@@ -26,6 +26,17 @@ new class extends Component
         return Booking::paginate(6);
     }
 
+    public function delete($id){
+
+
+        Booking::findOrFail($id);
+
+
+
+
+
+    }
+
     public function with(): array
     {
         return [
@@ -37,14 +48,23 @@ new class extends Component
 ?>
 
 <div>
-    <x-header title="Dashboard" subtitle="Booking List" separator />
-    <x-table class="border" :headers="$headers" :rows="$bookings" with-pagination >
+    <x-header title="Dashboard" subtitle="Booking List" separator>
+        <x-slot:middle class="!justify-end">
+            <x-input icon="o-bolt" placeholder="Search..." />
+        </x-slot:middle>
+        <x-slot:actions>
+            <x-button icon="o-funnel" />
+            <x-button wire:navigate link="/admin/create-booking" icon="o-plus" class="btn-primary">Create Booking</x-button>
+        </x-slot:actions>
+    </x-header>
+    <x-card shadow>
+        <x-table class="border border-sm" :headers="$headers" :rows="$bookings" with-pagination>
 
+            {{-- Special `actions` slot --}}
+            @scope('actions', $booking)
+                <x-button icon="o-trash" wire:click="delete({{ $booking->id }})" spinner class="btn-sm" />
+            @endscope
 
-    {{-- Special `actions` slot --}}
-    @scope('actions', $booking)
-        <x-button icon="o-trash" wire:click="delete({{ $booking->id }})" spinner class="btn-sm" />
-    @endscope
-
-</x-table>
+        </x-table>
+    </x-card>
 </div>
