@@ -2,6 +2,7 @@
 
 use Livewire\Component;
 use Mary\Traits\Toast;
+use Livewire\Attributes\Validate;
 
 new class extends Component
 {
