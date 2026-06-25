@@ -13,7 +13,7 @@ Route::livewire('/login', 'pages::auth.login');
 Route::middleware(AuthUser::class)->group(function(){
     Route::livewire('/', 'pages::backend.home');
     Route::livewire('/admin/bookings', 'pages::backend.bookings.index');
-    Route::livewire('/admin/create-booking', 'pages::backend.bookings.create-booking');
+    Route::livewire('/admin/create-booking', 'pages::backend.bookings.create');
 });
 
 Route::livewire('/create-user', 'pages::backend.users.create');
