@@ -4,6 +4,8 @@ use Livewire\Component;
 use Mary\Traits\Toast;
 use Livewire\Attributes\Validate;
 
+use App\Models\Booking;
+
 new class extends Component
 {
     use Toast;
